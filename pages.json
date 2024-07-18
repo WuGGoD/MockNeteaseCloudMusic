@@ -3,6 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
+<<<<<<< HEAD
 				"navigationBarTitleText": "首页"
 			}
 		},
@@ -16,15 +17,25 @@
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
+=======
+				"navigationBarTitleText": "网易云项目"
+			}
+		},
+		{
+			"path": "pages/index/search/search",
+			"style": {
+				"navigationBarTitleText": ""
+>>>>>>> tyh
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "首页",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
+<<<<<<< HEAD
 	"uniIdRouter": {},
 	"tabBar": {
 		"color": "#333333",
@@ -41,4 +52,7 @@
 			}
 		]
 	}
+=======
+	"uniIdRouter": {}
+>>>>>>> tyh
 }

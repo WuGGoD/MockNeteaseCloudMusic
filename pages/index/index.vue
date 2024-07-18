@@ -1,23 +1,16 @@
+<script setup>
+import search from './search/search.vue'
+</script>
+
+
 <template>
 	<view class="content">
-		
+		<!-- 搜索组件 -->
+		<search />
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-			}
-		},
-		onLoad() {
 
-		},
-		methods: {
-
-		}
-	}
-</script>
 
 <style>
 	.content {
