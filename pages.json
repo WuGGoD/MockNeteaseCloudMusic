@@ -30,11 +30,11 @@
 			"style": {
 				"navigationBarTitleText": "搜索"
 				}
-		},	
+		},
 		{
-			"path" : "pages/index/banner/banner",
-			"style" :{
-				"navigationBarTitleText" : ""
+			"path": "pages/index/banner/banner",
+			"style": {
+				"navigationBarTitleText": "轮播图"
 			}
 		}
 	],
@@ -55,7 +55,7 @@
 				"text": "发现"
 			},
 			{
-				"pagePath": "pages/login/login",
+				"pagePath": "pages/mine/mine",
 				"text": "我的"
 			}
 		]

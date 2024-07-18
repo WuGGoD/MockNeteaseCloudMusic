@@ -4,7 +4,7 @@ import { getListApi }from '../services/index.js'
  const List =ref([])
 const getList = async () => {
 	const res = await getListApi()
-	List.value= res.data.result.splice(1,6)
+	List.value= res.result.splice(1,6)
 }
 getList()
 </script>
