@@ -6,10 +6,6 @@ export const request = (method, url,
 	const cookieData = curCookie ? {
 		curCookie
 	} : {};
-	console.log(9999999999, {
-		...options,
-		...cookieData
-	});
 	uni.showLoading({
 		title: '加载中',
 		mask: true
@@ -52,6 +48,6 @@ export const qrCheck = key => request('get', `/login/qr/check?key=${key}`)
 export const loginStatus = () => request('get', `/login/status`)
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 
-export const getBannerApi = () => request('post', 'http://121.89.213.194:5001/banner')
+export const getBannerApi = () => request('post', '/banner')
 
-export const geiListApi = data => request('post', 'https://zyxcl.xyz/music/api//personalized', data)
+export const geiListApi = data => request('post', '/personalized', data)
