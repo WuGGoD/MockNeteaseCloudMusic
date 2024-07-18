@@ -1,23 +1,14 @@
+<script setup>
+	import bannerVue from './banner/banner.vue'
+</script>
+
 <template>
 	<view class="content">
-		
+		<bannerVue></bannerVue>
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-			}
-		},
-		onLoad() {
 
-		},
-		methods: {
-
-		}
-	}
-</script>
 
 <style>
 	.content {
