@@ -1,23 +1,19 @@
+<script setup>
+import search from './search/search.vue'
+// import bannerVue from './banner/banner.vue'
+</script>
+
+
 <template>
 	<view class="content">
-		
+		<!-- 搜索组件 -->
+		<search />
+		<!-- 轮播图组件 -->
+		<!-- <bannerVue /> -->
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-			}
-		},
-		onLoad() {
 
-		},
-		methods: {
-
-		}
-	}
-</script>
 
 <style>
 	.content {
