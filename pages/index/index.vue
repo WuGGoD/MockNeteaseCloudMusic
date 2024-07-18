@@ -1,7 +1,6 @@
 <template>
 	<view class="content">
-		<view class="text-area">
-		</view>
+		
 	</view>
 </template>
 
@@ -27,5 +26,4 @@
 		align-items: center;
 		justify-content: center;
 	}
-
 </style>
