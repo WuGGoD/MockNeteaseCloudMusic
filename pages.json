@@ -36,7 +36,7 @@
 				"text": "发现"
 			},
 			{
-				"pagePath": "pages/login/login",
+				"pagePath": "pages/mine/mine",
 				"text": "我的"
 			}
 		]

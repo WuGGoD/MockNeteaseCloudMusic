@@ -6,7 +6,7 @@ const useStore = useUserStore();
 
 <template>
     <view class="mine"> 我的音乐 </view>
-    <view class="text" v-if="!useStore.verify">
+    <view class="text" v-if="!useStore.account">
         <navigator url="/pages/login/login">去登陆</navigator>
     </view>
 </template>
