@@ -5,8 +5,8 @@
 	const banner = ref([])
 	const indicatorDots = ref(true)
 	const autoplay = ref(true)
-	const interval = ref(2000)
-	const duration = ref(1000)
+	const interval = ref(5000)
+	const duration = ref(500)
 	const navList = ref([
 		{title: '每日推荐', url: 'https://p1.music.126.net/4DpSgAVpJny4Ewf-Xw_WQQ==/109951163986641971.jpg'},
 		{title: '私人FM', url: 'http://p1.music.126.net/Shi7cRT1bDhwpVDM7AOFXg==/109951165265330616.jpg'},
