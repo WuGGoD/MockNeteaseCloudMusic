@@ -12,6 +12,9 @@
 	}
 </script>
 
-<style>
+<style lang='scss'>
+	@import './uni_modules/uni-scss/index.scss';
+	@import './static/scss/style.scss';
+	@import './static/scss/variable.scss';
 	/*每个页面公共css */
 </style>
