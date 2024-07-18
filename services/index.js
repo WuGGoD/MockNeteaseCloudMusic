@@ -29,7 +29,7 @@ export const request = (method, url,
 		})
 	})
 }
-
+export const getListApi = () => request('get', '/personalized')
 
 //手机验证码登录
 export const loginCellPhone = phone => request('get', `/captcha/sent?phone=${phone}`)
@@ -49,5 +49,3 @@ export const loginStatus = () => request('get', `/login/status`)
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 
 export const getBannerApi = () => request('post', '/banner')
-
-export const geiListApi = data => request('post', '/personalized', data)
