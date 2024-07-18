@@ -3,15 +3,63 @@
 		{
 			"path": "pages/section",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationBarTitleText": "网易云项目"
+			}
+		},
+		{
+			"path": "pages/index/search/search",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+<<<<<<< HEAD
+			"path": "pages/searchPage/searchPage",
+			"style": {
+				"navigationBarTitleText": "搜索"
+=======
+			"path" : "pages/index/banner/banner",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+>>>>>>> 46d28952ea6ecdb3c1673ce91bed2880fc750468
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "首页",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "#c84341",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "发现"
+			},
+			{
+				"pagePath": "pages/login/login",
+				"text": "我的"
+			}
+		]
 	},
 	"uniIdRouter": {}
 }
