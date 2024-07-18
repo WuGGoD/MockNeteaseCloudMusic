@@ -1,23 +1,17 @@
+<script setup>
+
+import section from '../section.vue'
+</script>
+
+
 <template>
 	<view class="content">
-		
+		<!-- 推荐歌单组件 -->
+		<section />
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-			}
-		},
-		onLoad() {
 
-		},
-		methods: {
-
-		}
-	}
-</script>
 
 <style>
 	.content {
