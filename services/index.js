@@ -41,18 +41,12 @@ export const qrKey = () => request('get', `/login/qr/key?timestamp=${Date.now()}
 export const qrCreate = key => request('get', `/login/qr/create?timestamp=${Date.now()}&key=${key}&qrimg=qrimg`)
 export const qrCheck = key => request('get', `/login/qr/check?timestamp=${Date.now()}&key=${key}`)
 
-
-export const getSearchHotApi = () => request('get', '/search/hot/detail')
-
 //登录状态
 export const loginStatus = () => request('get', `/login/status`)
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 export const getUserAccount = () => request('get', `/user/account`)
 export const getUserSubcount = () => request('get', `/user/subcount`)
 export const getUserLevel = () => request('get', `/user/level`)
-
-
-
 export const getPlayList = id => request('get', `/user/playlist?uid=${id}`)
 
 //单曲
@@ -68,3 +62,6 @@ export const getRankApi = () => request('get', '/toplist/detail')
 
 
 export const getCommentApi = id => request('get', `/comment/playlist?id=${id}`)
+export const getSearchHotApi = () => request('get', '/search/hot/detail')
+export const getSearchResultApi = keyword => request('get', `/search/suggest?keywords=${keyword}&type=mobile`)
+export const getSearchResultDeatilApi = keyword => request('get', `/search?keywords=${keyword}`)
