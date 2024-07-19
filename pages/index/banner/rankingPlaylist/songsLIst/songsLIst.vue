@@ -1,5 +1,18 @@
 <script setup>
-	const props = defineProps(['list'])
+	import { defineProps } from 'vue'
+	const props = defineProps(['list', "listId"])
+	
+	const play = id => {
+		uni.navigateTo({
+			url: `/pages/index/banner/rankingPlaylist/rankingPlaylist?id=${encodeURIComponent(id)}`,
+			success: function () {
+				console.log('跳转成功');
+			},
+			fail: function (err) {
+				console.error('跳转失败', err);
+			}
+		})
+	}
 
 </script>
 
@@ -17,10 +30,10 @@
 						fill="#dc0019" p-id="4480"></path>
 				</svg>
 			</view>
-			<text>播放全部({{list.length}})</text>
+			<text @click="play(listId)">播放全部({{list?.length ? list.length : 0}})</text>
 		</view>
 		<view class="songs-list">
-			<view class="song-item" v-for="(item, index) in list" :key="item.id">
+			<view class="song-item" v-if="list" v-for="(item, index) in list" :key="item.id" @click="play(listId)">
 				<text>{{index + 1}}</text>
 				<view class="song-detail">
 					<view class="song-name">

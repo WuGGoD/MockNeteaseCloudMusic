@@ -28,6 +28,11 @@
 				url:'/pages/index/banner/rank/rank'
 			})
 		}
+		if (val === '每日推荐') {
+			uni.navigateTo({
+				url:'/pages/index/banner/recommend/recommend'
+			})
+		}
 	}
 
 const getBanner = async () => {

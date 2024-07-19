@@ -1,5 +1,5 @@
 <script setup> 
-import { ref } from 'vue'
+import { ref, defineProps, defineEmits } from 'vue'
 import { getCommentApi } from '../../../../../services'
 const props = defineProps(['id'])
 const emits = defineEmits(['hide'])
