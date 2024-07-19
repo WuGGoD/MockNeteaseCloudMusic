@@ -1,5 +1,5 @@
 {
-  "name": "MockNeteaseCloudMusic",
+  "name" : "MockNeteaseCloudMusic",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@dcloudio/uni-ui": "^1.5.6",
     "axios": "^1.7.2",
     "pinia": "^2.1.7"
   },

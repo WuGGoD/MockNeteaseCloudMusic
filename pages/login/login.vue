@@ -1,45 +1,111 @@
 <script setup>
-import { ref } from 'vue';
-import { loginCellPhone, loginCaptCha } from '../../services/index.js';
+import { onBeforeMount, ref, watch } from 'vue';
+import {
+    loginCellPhone,
+    loginCaptCha,
+    emailLogin,
+    qrKey,
+    qrCreate,
+    qrCheck,
+} from '../../services/index.js';
 import { useUserStore } from '../../store/userInfo.js';
 
-const useStore = useUserStore();
+let timer;
+
+const userStore = useUserStore();
 
 const loginMethod = ref(0);
-
-const phone = ref(0);
-const captCha = ref(0);
-
 const methods = ref(['手机号登陆', '邮箱登录', '二维码登录']);
+
+const phone = ref('');
+const captCha = ref('');
+//手机号登陆
 async function login() {
     if (loginMethod.value === 0) {
-        const code = await loginCellPhone({ phone: phone.value });
-        console.log(code);
-        const res = await loginCaptCha({ captCha: captCha.value });
+        //表单校验
+        const res = await loginCaptCha(phone.value, captCha.value);
         console.log(res);
     }
 }
+async function sendCode() {
+    const code = await loginCellPhone(phone.value);
+    console.log(code);
+}
+
+//邮箱登录
+const email = ref('');
+const password = ref('');
+async function emailMethod() {
+    const res = await emailLogin(email.value, password.value);
+    // console.log(res.cookie);
+    uni.setStorageSync('curCookie', res.cookie);
+    // userStore.getAccount(res.cookie);
+    userStore.account = res.account;
+    uni.showToast({
+        title: '登录成功,即将返回个人页面',
+        icon: 'success',
+    });
+    const timeOut = setTimeout(() => {
+        uni.switchTab({
+            url: '/pages/mine/mine',
+        });
+    }, 1000);
+}
+
+//二维码登录
+const qrUrl = ref('');
+async function qrLogin() {
+    const qr = await qrKey();
+    console.log(qr.data);
+    const key = qr.data.unikey;
+    const create = await qrCreate(key);
+    qrUrl.value = create.data.qrimg;
+    timer = setInterval(async () => {
+        const check = await qrCheck(key);
+        console.log(check);
+        if (check.code === 803) {
+            console.log(678678678);
+            clearInterval(timer);
+            return;
+        }
+    }, 2000);
+}
+
+watch(
+    () => loginMethod.value,
+    () => {
+        if (loginMethod.value === 2) {
+            qrLogin();
+        } else {
+            clearInterval(timer);
+        }
+    },
+    {
+        immediate: true,
+    }
+);
 </script>
 
 <template>
     <view class="mine"> 我的音乐 </view>
     <view class="login">
-        {{ phone }}
         <view class="loginMethod">
             <view :class="['phone', { show: loginMethod === 0 }]">
                 <view class="inps">
                     <input
                         type="tel"
                         class="telInp"
-                        v-model.number="phone"
+                        v-model="phone"
                         placeholder="请输入手机号" />
                     <view>
                         <input
                             type="text"
                             class="capchatInp"
-                            v-model.number="captCha"
+                            v-model="captCha"
                             placeholder="请输入验证码" />
-                        <button class="capchatBtn">发送验证码</button>
+                        <button class="capchatBtn" @click="sendCode">
+                            发送验证码
+                        </button>
                     </view>
                 </view>
                 <button class="login" @click="login">登录</button>
@@ -49,16 +115,18 @@ async function login() {
                     <input
                         type="email"
                         class="eamilInp"
-                        placeholder="请输入邮箱" />
+                        placeholder="请输入邮箱"
+                        v-model="email" />
                     <input
                         type="password"
                         class="passwordInp"
-                        placeholder="请输入密码" />
+                        placeholder="请输入密码"
+                        v-model="password" />
                 </view>
-                <button class="login" @click="login">登录</button>
+                <button class="login" @click="emailMethod">登录</button>
             </view>
             <view :class="['qrCode', { show: loginMethod === 2 }]">
-                <img src="" alt="" />
+                <img :src="qrUrl" alt="" />
             </view>
         </view>
         <view class="options">
@@ -134,8 +202,8 @@ async function login() {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 300rpx;
-        height: 300rpx;
+        width: 400rpx;
+        height: 400rpx;
     }
 }
 
