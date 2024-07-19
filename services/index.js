@@ -2,10 +2,6 @@ const base = 'https://zyxcl.xyz/music/api'
 
 export const request = (method, url,
 	options = {}) => {
-	const curCookie = uni.getStorageSync('curCookie') || ''
-	const cookieData = curCookie ? {
-		curCookie
-	} : {};
 	uni.showLoading({
 		title: '加载中',
 		mask: true
@@ -15,9 +11,9 @@ export const request = (method, url,
 			method,
 			url: base + url,
 			data: {
-				...options,
-				...cookieData
+				...options
 			},
+			withCredentials: true,
 			success: res => {
 				resolve(res.data)
 				uni.hideLoading()
@@ -42,14 +38,18 @@ export const emailLogin = (email, password) => request('get', `/login?email=${em
 //二维码登录
 export const qrKey = () => request('get', `/login/qr/key?timestamp=${Date.now()}`)
 export const qrCreate = key => request('get', `/login/qr/create?timestamp=${Date.now()}&key=${key}&qrimg=qrimg`)
-export const qrCheck = key => request('get', `/login/qr/check?key=${key}`)
+export const qrCheck = key => request('get', `/login/qr/check?timestamp=${Date.now()}&key=${key}`)
 
 
-export const getSearchHotApi = () =>request ('get' ,'/search/hot/detail')
+export const getSearchHotApi = () => request('get', '/search/hot/detail')
 
 //登录状态
 export const loginStatus = () => request('get', `/login/status`)
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
+export const getUserAccount = () => request('get', `/user/account`)
+export const getUserSubcount = () => request('get', `/user/subcount`)
+export const getUserLevel = () => request('get', `/user/level`)
 
 export const getBannerApi = () => request('post', '/banner')
 
+export const getPlayList = id => request('get', `/user/playlist?uid=${id}`)
