@@ -49,3 +49,5 @@ export const loginStatus = () => request('get', `/login/status`)
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 
 export const getBannerApi = () => request('post', '/banner')
+//每日推荐歌曲
+export const getSongsApi =() =>request('git' ,`/personalized/newsong`)

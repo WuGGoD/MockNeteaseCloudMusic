@@ -23,5 +23,9 @@ import search from './search/search.vue';
     flex-direction: column;
     align-items: center;
     justify-content: center;
+	
+}
+.content::-webkit-scrollbar {
+    display: none; /* 隐藏滚动条 */
 }
 </style>

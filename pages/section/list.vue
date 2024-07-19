@@ -1,15 +1,20 @@
 <script setup>
 import { defineProps } from 'vue';
-
-const props = defineProps(['songList']);
+const props = defineProps(['songList' ,'nameList']);
+import { ref } from 'vue';
+const goDetail = id => {
+    uni.navigateTo({
+      url: `/pages/songlist/songlist?id=${id}`
+    })
+  }
 </script>
 
 <template>
     <view class="section">
-        <view class="section-header">
+        <view class="section-header ">
             <view class="section-header-line"> </view>
-            <view class="section-header-content">
-                <span>推荐歌单</span>
+            <view class="section-header-content" v-for="(name ,index) in nameList" :key="index">
+                <span>{{name}}</span>
             </view>
         </view>
         <view class="section-content">
@@ -28,7 +33,7 @@ const props = defineProps(['songList']);
     </view>
 </template>
 
-<style>
+<style scoped lang="scss">
 .section {
     width: 100%;
     height: 100%;
@@ -46,25 +51,30 @@ const props = defineProps(['songList']);
             background-color: #c84341;
         }
         .section-header-content {
+			 display: flex;
+			justify-content: space-between;
             span {
                 margin-left: 20rpx;
             }
         }
     }
     .section-content {
-        overflow: auto;
+        overflow-x:auto;
+		overflow-y: hidden;
+		position: relative;
+		white-space: nowrap;
         display: flex;
         padding: 0 10rpx 20rpx;
         font-size: 14px;
         .section-content-playlist {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
+			 display: inline-block;
+			   vertical-align: top; /* 垂直居中对齐 */
             flex-shrink: 0;
             padding: 0 10rpx 20rpx;
-            overflow: auto;
+            width: auto;
+			overflow: auto;
             .section-content-playlist::-webkit-scrollbar {
-                display: none;
+                display: none; /* 隐藏滚动条 */
             }
             .section-content-playitem {
                 width: 240rpx;
@@ -87,5 +97,8 @@ const props = defineProps(['songList']);
             }
         }
     }
+}
+.section-content::-webkit-scrollbar {
+    display: none; /* 隐藏滚动条 */
 }
 </style>
