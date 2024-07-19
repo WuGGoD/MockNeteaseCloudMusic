@@ -5,9 +5,21 @@
 	const officialList = ref([])
 	const otherList = ref([])
 	
+	const onClick = id => {
+		uni.navigateTo({
+			url: `/pages/index/banner/rankingPlaylist/rankingPlaylist?id=${encodeURIComponent(id)}`,
+			success: function () {
+				console.log('跳转成功');
+			},
+			fail: function (err) {
+				console.error('跳转失败', err);
+			}
+		})
+	}
+	
 	const getRank = async () => {
 		const res = await getRankApi()
-		// console.log(res)
+		console.log(res)
 		officialList.value = res.list.slice(0, 4)
 		otherList.value = res.list.slice(4)
 	}
@@ -27,7 +39,7 @@
 						:sub-title="item.playCount"
 						:extra="item.updateFrequency"
 						:thumbnail="item.coverImgUrl"
-						@click="onClick" 
+						@click="onClick(item.id)" 
 						>
 						<view class="uni-body">
 							<view class="item-song" v-for="(songs, index) in item.tracks" :key="songs.first">
@@ -41,7 +53,7 @@
 		<view class="other">
 			<uni-section title="其他榜单" type="line" padding>
 				<uni-grid class="uni-grids" :column="3" :show-border="false" :square="false" @change="change">
-					<uni-grid-item v-for="(item ,index) in otherList" :index="index" :key="item.id">
+					<uni-grid-item v-for="(item ,index) in otherList" :index="index" :key="item.id" @click="onClick(item.id)">
 						<view class="grid-item-box">
 							<image class="image" :src="item.coverImgUrl" mode="widthFix" />
 						</view>

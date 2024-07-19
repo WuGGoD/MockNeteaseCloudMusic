@@ -51,6 +51,10 @@ export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 
 export const getBannerApi = () => request('get', '/banner')
 
+export const getBallIconApi = () => request('get', '/homepage/block/page')
 
 export const getRankApi = () => request('get', '/toplist/detail')
 
+export const getRankDetailApi = id => request('get', `/playlist/detail?id=${id}`)
+
+export const getCommentApi = id => request('get', `/comment/playlist?id=${id}`) 

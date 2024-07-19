@@ -1,19 +1,13 @@
 <script setup>
 	import { nextTick, ref } from 'vue'
-	import { getBannerApi } from '../../../services'
+	import { getBannerApi, getBallIconApi } from '../../../services'
 	
 	const banner = ref([])
 	const indicatorDots = ref(true)
 	const autoplay = ref(true)
 	const interval = ref(5000)
 	const duration = ref(500)
-	const navList = ref([
-		{title: '每日推荐', url: 'https://p1.music.126.net/4DpSgAVpJny4Ewf-Xw_WQQ==/109951163986641971.jpg'},
-		{title: '私人FM', url: 'http://p1.music.126.net/Shi7cRT1bDhwpVDM7AOFXg==/109951165265330616.jpg'},
-		{title: '歌单', url: 'http://p1.music.126.net/uG5p6CnwAHrLqOkaSeRlnA==/109951163986649164.jpg'},
-		{title: '排行榜', url: 'http://p1.music.126.net/SDFC6A3X2wzUCavYyeGIOg==/109951163986649670.jpg'},
-		{title: '有声书', url: 'http://p1.music.126.net/Kb4oK0m_ocs3FR3lo-r9yg==/109951167319110429.jpg'},
-	])
+	const navList = ref([])
 	
 	const changeIndicatorDots = (e) => {
 			indicatorDots.value = !indicatorDots.value
@@ -28,7 +22,7 @@
 			duration.value = e.target.value
 	}
 	
-	const to = (val) => {
+	const toRank = (val) => {
 		if (val === '排行榜') {
 			uni.navigateTo({
 				url:'/pages/index/banner/rank/rank'
@@ -38,12 +32,18 @@
 
 const getBanner = async () => {
 	const res = await getBannerApi()
-	console.log(res.banners)
 	banner.value = res.banners
-	console.log(banner.value)
 }
 
+const getBallIcon = async () => {
+	const res = await getBallIconApi()
+	
+	localStorage.setItem('navlist', JSON.stringify(res.data.blocks[1].creatives[0].resources))
+	// console.log(navList.value)
+}
+navList.value = JSON.parse(localStorage.getItem('navlist'))
 getBanner()
+getBallIcon()
 
 </script>
 
@@ -63,11 +63,11 @@ getBanner()
 		</view>
 		
 		<view class="nav">
-			<view class="nav-item" v-for="item in navList" :key="item.url" @click="to(item.title)">
+			<view class="nav-item" v-for="item in navList" :key="item.uiElement.mainTitle.title" @click="toRank(item.uiElement.mainTitle.title)">
 				<view class="img">
-					<image :src="item.url" mode="widthFix"></image>
+					<image :src="item.uiElement.image.imageUrl" mode="widthFix"></image>
 				</view>
-				<text>{{item.title}}</text>
+				<text>{{item.uiElement.mainTitle.title}}</text>
 			</view>
 		</view>
 	</view>
@@ -100,16 +100,17 @@ image{
 }
 
 .nav{
-	width: 100%;
 	height: 150rpx;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 20rpx;
 	margin-top: 20rpx;
+	white-space: nowrap;
+	overflow-x: auto;
+	scrollbar-width: none;
 }
 .nav-item{
-	width: 20%;
+	width: 150rpx;
 	height: 150rpx;
 	padding: 10rpx 0;
 	display: flex;
@@ -117,6 +118,7 @@ image{
 	align-items: center;
 	justify-content: space-between;
 	font-size: 12px;
+	flex-shrink: 0;
 	.img{
 		width: 80rpx;
 		height: 80rpx;
