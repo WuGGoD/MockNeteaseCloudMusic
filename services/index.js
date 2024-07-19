@@ -70,15 +70,11 @@ export const getBallIconApi = () => request('get', '/homepage/block/page')
 export const getRankApi = () => request('get', '/toplist/detail')
 
 
-<<<<<<< HEAD
 export const getCommentApi = id => request('get', `/comment/playlist?id=${id}`)
 
 export const getSearchHotApi = () => request('get', '/search/hot/detail')
 export const getSearchResultApi = keyword => request('get', `/search/suggest?keywords=${keyword}&type=mobile`)
 export const getSearchResultDeatilApi = keyword => request('get', `/search?keywords=${keyword}`)
 
-=======
-export const getCommentApi = id => request('get', `/comment/playlist?id=${id}`) 
 
 export const getRecommendApi = () => request('get', '/recommend/songs')
->>>>>>> xrr
