@@ -39,8 +39,8 @@ async function emailMethod() {
     const res = await emailLogin(email.value, password.value);
     // console.log(res.cookie);
     uni.setStorageSync('curCookie', res.cookie);
-    // userStore.getAccount(res.cookie);
-    userStore.account = res.account;
+    userStore.getAccount(res.cookie);
+    // userStore.account = res.account;
     uni.showToast({
         title: '登录成功,即将返回个人页面',
         icon: 'success',
@@ -55,6 +55,7 @@ async function emailMethod() {
 //二维码登录
 const qrUrl = ref('');
 async function qrLogin() {
+    clearInterval(timer);
     const qr = await qrKey();
     console.log(qr.data);
     const key = qr.data.unikey;
@@ -64,9 +65,17 @@ async function qrLogin() {
         const check = await qrCheck(key);
         console.log(check);
         if (check.code === 803) {
-            console.log(678678678);
+            userStore.getAccount();
             clearInterval(timer);
-            return;
+            uni.showToast({
+                title: '登录成功,即将返回个人页面',
+                icon: 'success',
+            });
+            const timeOut = setTimeout(() => {
+                uni.switchTab({
+                    url: '/pages/mine/mine',
+                });
+            }, 1000);
         }
     }, 2000);
 }

@@ -1,7 +1,8 @@
 <script setup>
+import search from './search/search.vue'
+import bannerVue from './banner/banner.vue'
 import radar from '../section/radar.vue';
-import search from './search/search.vue';
-// import bannerVue from './banner/banner.vue'
+
 </script>
 
 <template>
@@ -9,7 +10,7 @@ import search from './search/search.vue';
         <!-- 搜索组件 -->
         <search />
         <!-- 轮播图组件 -->
-        <!-- <bannerVue /> -->
+        <bannerVue />
         <!-- 推荐歌单组件 -->
         <radar />
     </view>
