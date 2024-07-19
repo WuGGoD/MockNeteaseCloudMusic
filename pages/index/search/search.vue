@@ -6,6 +6,12 @@
 	const open = () => {
 		popup.value.open('left')
 	}
+	const goSearchPage = () => {
+		//在起始页面跳转到test.vue页面并传递参数
+		uni.navigateTo({
+			url: '/pages/searchPage/searchPage'
+		});
+	}
 </script>
 
 <template>
@@ -18,7 +24,7 @@
 			</view>
 		</uni-popup>
 
-		<view class="searchBar">
+		<view class="searchBar" @click="goSearchPage">
 			<uni-icons type="search" size="20" color="#b3b3b3" class="searchIcon"></uni-icons>
 			搜索
 		</view>
