@@ -7,7 +7,7 @@ import {
 import {
 	loginStatus,
 	getUserDetail
-} from '../services';
+} from '../services'
 
 export const useUserStore = defineStore('user', () => {
 	const verify = ref(null)
