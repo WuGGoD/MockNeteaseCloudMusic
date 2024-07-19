@@ -26,16 +26,17 @@
 			}
 		},
 		{
-<<<<<<< HEAD
 			"path": "pages/searchPage/searchPage",
 			"style": {
-				"navigationBarTitleText": "搜索"
-=======
-			"path" : "pages/index/banner/banner",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
->>>>>>> 46d28952ea6ecdb3c1673ce91bed2880fc750468
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "搜索",
+				"navigationBarBackgroundColor": "#c84341"
+			}
+		},
+		{
+			"path": "pages/index/banner/banner",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		}
 	],

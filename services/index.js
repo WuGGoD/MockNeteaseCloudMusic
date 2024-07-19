@@ -18,3 +18,35 @@ export const loginCaptCha = data => request('post', 'https://music.163.com/weapi
 export const getBannerApi = () => request('post', 'http://121.89.213.194:5001/banner')
 
 export const geiListApi = () =>request ('post' ,'https://zyxcl.xyz/music/api//personalized')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const getSearchHotApi = () =>request ('get' ,'https://zyxcl.xyz/music/api/search/hot/detail')

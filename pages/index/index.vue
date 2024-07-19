@@ -1,6 +1,6 @@
 <script setup>
 import search from './search/search.vue'
-// import bannerVue from './banner/banner.vue'
+import bannerVue from './banner/banner.vue'
 </script>
 
 
@@ -9,7 +9,7 @@ import search from './search/search.vue'
 		<!-- 搜索组件 -->
 		<search />
 		<!-- 轮播图组件 -->
-		<!-- <bannerVue /> -->
+		<bannerVue />
 	</view>
 </template>
 
