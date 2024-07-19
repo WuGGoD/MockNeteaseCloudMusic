@@ -38,15 +38,16 @@
 			}
 		},
 		{
-<<<<<<< HEAD
+
 			"path": "pages/audio/audio",
 			"style": {
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#c84341"
-=======
+				"navigationBarBackgroundColor": "#c84341"}
+				},
+{
 			"path" : "pages/index/banner/recommend/recommend",
 			"style" : 
-			{
+			{ 
 				"navigationBarTitleText" : ""
 			}
 		},
@@ -76,7 +77,6 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : ""
->>>>>>> master
 			}
 		}
 	],
