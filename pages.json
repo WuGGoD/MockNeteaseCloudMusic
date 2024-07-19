@@ -36,6 +36,20 @@
 			"style": {
 				"navigationBarTitleText": "轮播图"
 			}
+		},
+		{
+			"path" : "pages/index/banner/recommend/recommend",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/index/banner/rank/rank",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"globalStyle": {

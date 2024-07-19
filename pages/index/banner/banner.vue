@@ -27,6 +27,14 @@
 	const durationChange = (e) => {
 			duration.value = e.target.value
 	}
+	
+	const to = (val) => {
+		if (val === '排行榜') {
+			uni.navigateTo({
+				url:'/pages/index/banner/rank/rank'
+			})
+		}
+	}
 
 const getBanner = async () => {
 	const res = await getBannerApi()
@@ -55,7 +63,7 @@ getBanner()
 		</view>
 		
 		<view class="nav">
-			<view class="nav-item" v-for="item in navList" :key="item.url">
+			<view class="nav-item" v-for="item in navList" :key="item.url" @click="to(item.title)">
 				<view class="img">
 					<image :src="item.url" mode="widthFix"></image>
 				</view>

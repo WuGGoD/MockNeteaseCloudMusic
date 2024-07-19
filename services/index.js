@@ -39,6 +39,7 @@ export const loginCaptCha = (phone, code) => request('get',
 //邮箱登录
 export const emailLogin = (email, password) => request('get', `/login?email=${email}&password=${password}`)
 
+
 //二维码登录
 export const qrKey = () => request('get', `/login/qr/key?timestamp=${Date.now()}`)
 export const qrCreate = key => request('get', `/login/qr/create?timestamp=${Date.now()}&key=${key}&qrimg=qrimg`)
@@ -49,3 +50,7 @@ export const loginStatus = () => request('get', `/login/status`)
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 
 export const getBannerApi = () => request('post', '/banner')
+
+
+export const getRankApi = () => request('get', '/toplist/detail')
+
