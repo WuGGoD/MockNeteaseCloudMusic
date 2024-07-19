@@ -3,7 +3,6 @@ import section from '../section.vue'
 import search from './search/search.vue'
 import bannerVue from './banner/banner.vue'
 import radar from '../section/radar.vue';
-import search from './search/search.vue';
 </script>
 
 <template>
