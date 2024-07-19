@@ -7,9 +7,9 @@
 	
 	const getRank = async () => {
 		const res = await getRankApi()
-		console.log(res.data.list)
-		officialList.value = res.data.list.slice(0, 4)
-		otherList.value = res.data.list.slice(4)
+		// console.log(res)
+		officialList.value = res.list.slice(0, 4)
+		otherList.value = res.list.slice(4)
 	}
 	getRank()
 
