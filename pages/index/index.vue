@@ -2,6 +2,7 @@
 import search from './search/search.vue'
 import bannerVue from './banner/banner.vue'
 import radar from '../section/radar.vue';
+
 </script>
 
 <template>

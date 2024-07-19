@@ -2,11 +2,13 @@
   "pages": [
     "pages/index/index",
     "pages/mine/mine",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/index/search/search",
+    "pages/index/banner/banner"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "首页",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },

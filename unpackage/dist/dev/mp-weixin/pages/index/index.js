@@ -1,15 +1,15 @@
 "use strict";
-const common_vendor = require("../../common/vendor.js");
-const _sfc_main = {
-  data() {
-    return {};
-  },
-  onLoad() {
-  },
-  methods: {}
-};
-function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return {};
+if (!Math) {
+  (search + bannerVue)();
 }
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);
-wx.createPage(MiniProgramPage);
+const search = () => "./search/search2.js";
+const bannerVue = () => "./banner/banner2.js";
+const _sfc_main = {
+  __name: "index",
+  setup(__props) {
+    return (_ctx, _cache) => {
+      return {};
+    };
+  }
+};
+wx.createPage(_sfc_main);

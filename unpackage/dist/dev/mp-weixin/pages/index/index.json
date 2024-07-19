@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "首页",
-  "usingComponents": {}
+  "usingComponents": {
+    "search": "./search/search",
+    "banner-vue": "./banner/banner"
+  }
 }
