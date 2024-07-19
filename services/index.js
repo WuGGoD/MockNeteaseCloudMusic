@@ -49,7 +49,7 @@ export const qrCheck = key => request('get', `/login/qr/check?key=${key}`)
 export const loginStatus = () => request('get', `/login/status`)
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 
-export const getBannerApi = () => request('post', '/banner')
+export const getBannerApi = () => request('get', '/banner')
 
 
 export const getRankApi = () => request('get', '/toplist/detail')
