@@ -21,7 +21,7 @@
 
 	const getHotDetailList = async () => {
 		const res = await getSearchHotApi()
-		HotDetailList.value = res.data.data
+		HotDetailList.value = res.data
 	}
 	getHotDetailList()
 </script>

@@ -31,7 +31,7 @@
 const getBanner = async () => {
 	const res = await getBannerApi()
 	// console.log(res.data.banners)
-	banner.value = res.data.banners
+	banner.value = res.banners
 	console.log(banner.value)
 }
 
