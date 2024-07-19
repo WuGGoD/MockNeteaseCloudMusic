@@ -12,10 +12,21 @@ getList();
 </script>
 
 <template>
-    <songList
-        v-for="(item, index) in 5"
-        :key="item"
-        :songList="list?.slice(index * 6 + 1, (index + 1) * 6)" />
+    <view class="list">
+        <songList
+            v-for="(item, index) in 5"
+            :key="item"
+            :songList="list?.slice(index * 6 + 1, (index + 1) * 6)" />
+    </view>
 </template>
 
-<style></style>
+<style>
+.list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    overflow-y: auto;
+}
+</style>
