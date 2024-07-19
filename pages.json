@@ -1,6 +1,5 @@
 {
-	"pages": [
-		{
+	"pages": [{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页"
@@ -36,6 +35,13 @@
 			"path": "pages/index/banner/banner",
 			"style": {
 				"navigationBarTitleText": "轮播图"
+			}
+		},
+		{
+			"path": "pages/audio/audio",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#c84341"
 			}
 		}
 	],

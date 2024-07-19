@@ -53,3 +53,8 @@ export const getUserLevel = () => request('get', `/user/level`)
 export const getBannerApi = () => request('post', '/banner')
 
 export const getPlayList = id => request('get', `/user/playlist?uid=${id}`)
+
+//单曲
+export const singleSong = id => request('get', `/song/detail?ids=${typeof id ==="object"?id.join(','):id}`)
+
+export const getRankDetailApi = id => request('get', `/playlist/detail?id=${id}`)
