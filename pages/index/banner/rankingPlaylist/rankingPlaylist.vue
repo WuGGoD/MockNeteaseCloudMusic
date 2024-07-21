@@ -19,6 +19,7 @@
 
 	onLoad((option) => {
 		id.value = option.id
+		// console.log(id.value)
 		getRankDetail(id.value)
 	})
 
@@ -64,7 +65,7 @@
 			</view>
 		</view>
 
-		<songsLIstVue :list="playList.tracks"></songsLIstVue>
+		<songsLIstVue :list="playList.tracks" :listId="id"></songsLIstVue>
 		<commentVue v-if="show" :id="playList.id" @hide="show = false"></commentVue>
 	</view>
 </template>

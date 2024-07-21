@@ -4,7 +4,14 @@
     "pages/mine/mine",
     "pages/login/login",
     "pages/index/search/search",
-    "pages/index/banner/banner"
+    "pages/searchPage/searchPage",
+    "pages/index/banner/banner",
+    "pages/audio/audio",
+    "pages/index/banner/recommend/recommend",
+    "pages/index/banner/rank/rank",
+    "pages/index/banner/rankingPlaylist/rankingPlaylist",
+    "pages/index/banner/rankingPlaylist/comment/comment",
+    "pages/index/banner/rankingPlaylist/songsLIst/songsLIst"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -23,7 +30,7 @@
         "text": "发现"
       },
       {
-        "pagePath": "pages/login/login",
+        "pagePath": "pages/mine/mine",
         "text": "我的"
       }
     ]
