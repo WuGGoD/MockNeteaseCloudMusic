@@ -1,7 +1,9 @@
 <script setup>
 	import { nextTick, ref } from 'vue'
-	import { getBannerApi, getBallIconApi } from '../../../services'
+	import { getAllDataApi } from '../../../services'
+	import { useUserStore } from '../../../store/userInfo'
 	
+	const userStore = useUserStore()
 	const banner = ref([])
 	const indicatorDots = ref(true)
 	const autoplay = ref(true)
@@ -29,26 +31,40 @@
 			})
 		}
 		if (val === '每日推荐') {
-			uni.navigateTo({
-				url:'/pages/index/banner/recommend/recommend'
-			})
+			if (userStore.account) {
+				
+				uni.navigateTo({
+					url:'/pages/index/banner/recommend/recommend'
+				})
+			} else {
+				uni.showToast({
+					title: '请先登录',
+					duration: 2000,
+					icon: 'fail'
+				})
+				uni.navigateTo({
+					url:'/pages/login/login'
+				})
+			}
 		}
 	}
 
-const getBanner = async () => {
-	const res = await getBannerApi()
-	banner.value = res.banners
+const getAllDataIcon = async () => {
+	const res = await getAllDataApi()
+	localStorage.setItem('data', JSON.stringify(res.data.blocks))
+	if (!localStorage.getItem('data')) {
+		navList.value = res.data.blocks[1].creatives[0].resources
+		banner.value = res.data.blocks[0].extInfo.banners
+	} else {
+		navList.value = JSON.parse(localStorage.getItem('data'))[1].creatives[0].resources
+		banner.value = JSON.parse(localStorage.getItem('data'))[0].extInfo.banners
+	}
+	// console.log(res.data.blocks)
 }
+// console.log(JSON.parse(localStorage.getItem('data'))[0].extInfo.banners)
 
-const getBallIcon = async () => {
-	const res = await getBallIconApi()
-	
-	localStorage.setItem('navlist', JSON.stringify(res.data.blocks[1].creatives[0].resources))
-	// console.log(navList.value)
-}
-navList.value = JSON.parse(localStorage.getItem('navlist'))
-getBanner()
-getBallIcon()
+
+getAllDataIcon()
 
 </script>
 
@@ -58,9 +74,9 @@ getBallIcon()
 			<view class="uni-margin-wrap">
 				<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval"
 					:duration="duration">
-					<swiper-item v-for="item in banner" :key="item.encodeId">
+					<swiper-item v-for="item in banner" :key="item.targetId">
 						<view class="swiper-item uni-bg-red">
-							<image :src="item.imageUrl" mode="widthFix"></image>
+							<image :src="item.pic" mode="widthFix"></image>
 						</view>
 					</swiper-item>
 				</swiper>

@@ -2,19 +2,21 @@
 	import { ref } from 'vue'
 	import songsLIstVue from '../rankingPlaylist/songsLIst/songsLIst.vue'
 	import { getRecommendApi } from '../../../../services'
+	import { useUserStore } from '../../../../store/userInfo'
 	
+	const userStore = useUserStore()
 	const list = ref([])
 	
 	const getRecommend = async () => {
-		const res = getRecommendApi()
-		console.log(res)
+		const res = await getRecommendApi()
+		list.value = res.data.dailySongs
 	}
 	getRecommend()
 	
 </script>
 
 <template>
-	<songsLIstVue></songsLIstVue>
+	<songsLIstVue :list="list"></songsLIstVue>
 </template>
 
 

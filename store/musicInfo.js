@@ -16,9 +16,15 @@ export const useMusicStore = defineStore('music', () => {
 		const res = await getRankDetailApi(listId.value)
 		playList.value = res.playlist.tracks
 	}
+	
+	const getListId = (id) => {
+		listId.value = id
+	}
+	
 	return {
 		playList,
 		listId,
+		getListId,
 		getSongs
 	}
 })

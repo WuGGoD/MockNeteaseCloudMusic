@@ -1,8 +1,12 @@
 <script setup>
 	import { defineProps } from 'vue'
+	import { useMusicStore } from '../../../../../store/musicInfo'
+	
 	const props = defineProps(['list', "listId"])
+	const musicStore = useMusicStore()
 	
 	const play = id => {
+		musicStore.getListId(id)
 		uni.navigateTo({
 			url: `/pages/index/banner/rankingPlaylist/rankingPlaylist?id=${encodeURIComponent(id)}`,
 			success: function () {

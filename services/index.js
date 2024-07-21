@@ -49,8 +49,7 @@ export const getUserSubcount = () => request('get', `/user/subcount`)
 export const getUserLevel = () => request('get', `/user/level`)
 
 
-//每日推荐歌曲
-export const getSongsApi =() =>request('git' ,`/personalized/newsong`)
+export const getSongsApi =() =>request('get' ,`/personalized/newsong`)
 
 
 
@@ -63,9 +62,9 @@ export const singleSong = id => request('get', `/song/detail?ids=${typeof id ===
 export const getRankDetailApi = id => request('get', `/playlist/detail?id=${id}`)
 
 
-export const getBannerApi = () => request('get', '/banner')
 
-export const getBallIconApi = () => request('get', '/homepage/block/page')
+// 首页banner部分数据
+export const getAllDataApi = () => request('get', '/homepage/block/page')
 
 export const getRankApi = () => request('get', '/toplist/detail')
 
@@ -76,5 +75,5 @@ export const getSearchHotApi = () => request('get', '/search/hot/detail')
 export const getSearchResultApi = keyword => request('get', `/search/suggest?keywords=${keyword}&type=mobile`)
 export const getSearchResultDeatilApi = keyword => request('get', `/search?keywords=${keyword}`)
 
-
+// 每日推荐
 export const getRecommendApi = () => request('get', '/recommend/songs')
