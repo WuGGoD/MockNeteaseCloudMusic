@@ -43,14 +43,13 @@ export const qrCheck = key => request('get', `/login/qr/check?timestamp=${Date.n
 
 //登录状态
 export const loginStatus = () => request('get', `/login/status`)
-export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 export const getUserAccount = () => request('get', `/user/account`)
 export const getUserSubcount = () => request('get', `/user/subcount`)
 export const getUserLevel = () => request('get', `/user/level`)
 
 
 //每日推荐歌曲
-export const getSongsApi =() =>request('git' ,`/personalized/newsong`)
+export const getSongsApi = () => request('git', `/personalized/newsong`)
 
 
 
@@ -75,3 +74,6 @@ export const getSearchHotApi = () => request('get', '/search/hot/detail')
 export const getSearchResultApi = keyword => request('get', `/search/suggest?keywords=${keyword}&type=mobile`)
 export const getSearchResultDeatilApi = keyword => request('get', `/search?keywords=${keyword}`)
 
+export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
+
+export const logout = ()=>request('get','/logout')
