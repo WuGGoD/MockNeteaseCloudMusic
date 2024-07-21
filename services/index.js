@@ -48,12 +48,11 @@ export const getUserSubcount = () => request('get', `/user/subcount`)
 export const getUserLevel = () => request('get', `/user/level`)
 
 
-<<<<<<< HEAD
+
 //每日推荐歌曲
-export const getSongsApi = () => request('git', `/personalized/newsong`)
-=======
+
 export const getSongsApi = () => request('get', `/personalized/newsong`)
->>>>>>> master
+
 
 
 
@@ -83,11 +82,11 @@ export const getSearchHotApi = () => request('get', '/search/hot/detail')
 export const getSearchResultApi = keyword => request('get', `/search/suggest?keywords=${keyword}&type=mobile`)
 export const getSearchResultDeatilApi = keyword => request('get', `/search?keywords=${keyword}`)
 
-<<<<<<< HEAD
+
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 
 export const logout = ()=>request('get','/logout')
-=======
+
 // 每日推荐
 export const getRecommendApi = () => request('get', '/recommend/songs')
->>>>>>> master
+

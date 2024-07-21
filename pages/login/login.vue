@@ -25,7 +25,19 @@ async function login() {
         //表单校验
         const res = await loginCaptCha(phone.value, captCha.value);
         console.log(res);
-    }
+		uni.setStorageSync('curCookie', res.cookie);
+		userStore.getAccount(res.cookie);
+		// userStore.account = res.account;
+		uni.showToast({
+			title: '登录成功,即将返回个人页面',
+			icon: 'success',
+		});
+		const timeOut = setTimeout(() => {
+				uni.switchTab({
+					url: '/pages/mine/mine',
+				});
+			}, 1000);
+		}
 }
 async function sendCode() {
     const code = await loginCellPhone(phone.value);
