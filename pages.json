@@ -38,45 +38,40 @@
 			}
 		},
 		{
-<<<<<<< HEAD
 			"path": "pages/audio/audio",
 			"style": {
 				"navigationBarTextStyle": "white",
 				"navigationBarBackgroundColor": "#c84341"
-=======
-			"path" : "pages/index/banner/recommend/recommend",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
 			}
 		},
 		{
-			"path" : "pages/index/banner/rank/rank",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/index/banner/recommend/recommend",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path" : "pages/index/banner/rankingPlaylist/rankingPlaylist",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/index/banner/rank/rank",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path" : "pages/index/banner/rankingPlaylist/comment/comment",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/index/banner/rankingPlaylist/rankingPlaylist",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path" : "pages/index/banner/rankingPlaylist/songsLIst/songsLIst",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
->>>>>>> master
+			"path": "pages/index/banner/rankingPlaylist/comment/comment",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/index/banner/rankingPlaylist/songsLIst/songsLIst",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		}
 	],

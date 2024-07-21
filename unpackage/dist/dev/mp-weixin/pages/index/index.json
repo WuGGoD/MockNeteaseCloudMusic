@@ -2,6 +2,7 @@
   "navigationBarTitleText": "首页",
   "usingComponents": {
     "search": "./search/search",
-    "banner-vue": "./banner/banner"
+    "banner-vue": "./banner/banner",
+    "radar": "../section/radar"
   }
 }

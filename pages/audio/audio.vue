@@ -1,20 +1,24 @@
 <script setup>
-import { ref, watch, computed } from 'vue';
-import { singleSong } from '../../services';
+import { ref, watch, computed, nextTick } from 'vue';
+import { singleSong, songCheck } from '../../services';
 import { useMusicStore } from '../../store/musicInfo';
+import { onReady, onLoad } from '@dcloudio/uni-app';
 
-const curIndex = ref(10);
+const curIndex = ref(0);
 
 const songUrl = ref('');
 const songDetail = ref(null);
 const audioManager = uni.createInnerAudioContext();
 audioManager.autoplay = true;
+const isPlay = ref(true);
+let timeAfter;
+const duration = ref(0);
+const currentTime = ref(0);
 
 const useStore = useMusicStore();
+
 useStore.getSongs().then(() => {
     songDetail.value = useStore.playList[curIndex.value];
-    console.log(songDetail.value);
-    console.log(songDetail.value.al.picUrl);
 
     watch(
         () => songDetail.value,
@@ -22,8 +26,35 @@ useStore.getSongs().then(() => {
             uni.setNavigationBarTitle({
                 title: songDetail.value?.name,
             });
+            const isWork = await songCheck(songDetail.value?.al.id);
+            console.log(88888888, isWork);
+            if (!isWork.success) {
+                isPlay.value = false;
+                duration.value = 0;
+                currentTime.value = 0;
+                audioManager.offCanplay();
+                audioManager.offTimeUpdate();
+                uni.showToast({
+                    title: isWork.message,
+                    icon: 'error',
+                });
+                timeAfter = setTimeout(() => {
+                    uni.hideToast();
+                    clearTimeout(timeAfter);
+                }, 1000);
+                return;
+            }
             const res = await singleSong(songDetail.value?.al.id);
-            console.log(9999999, res);
+            console.log(9999999, res, res.data[0].url);
+            audioManager.src = res.data[0].url;
+            audioManager.onCanplay(() => {
+                duration.value = audioManager.duration;
+                currentTime.value = audioManager.currentTime;
+                audioManager.play();
+            });
+            audioManager.onTimeUpdate(() => {
+                currentTime.value = audioManager.currentTime;
+            });
         },
         {
             deep: true,
@@ -33,6 +64,8 @@ useStore.getSongs().then(() => {
     watch(
         () => curIndex.value,
         () => {
+            uni.hideToast();
+            clearTimeout(timeAfter);
             songDetail.value = useStore.playList[curIndex.value];
         },
         {
@@ -41,17 +74,32 @@ useStore.getSongs().then(() => {
     );
 });
 const playBtnSrc = computed(() => {
-    return audioManager.paused
+    return isPlay.value
         ? '../../static/icon/zanting.png'
         : '../../static/icon/bofang.png';
 });
 const playPause = () => {
+    isPlay.value = !isPlay.value;
     if (audioManager.paused) {
         audioManager.play();
         return;
     }
     audioManager.pause();
 };
+const changeCurSong = num => {
+    if (curIndex.value === 0 && num === -1) {
+        curIndex.value = useStore.playList.length - 1;
+        return;
+    }
+    if (curIndex.value === useStore.playList.length - 1 && num === 1) {
+        curIndex.value = 0;
+        return;
+    }
+    curIndex.value += num;
+};
+const zero = num => (num >= 10 ? num : '0' + num);
+const formatTime = num =>
+    `${zero(Math.floor(num / 60))}:${zero(parseInt(num % 60))}`;
 </script>
 
 <template>
@@ -62,7 +110,7 @@ const playPause = () => {
         </view>
         <view class="rotate">
             <view class="discs">
-                <view class="img">
+                <view :class="['img', { animate: isPlay }]">
                     <image
                         style="width: 800rpx"
                         :src="songDetail?.al.picUrl"
@@ -76,29 +124,37 @@ const playPause = () => {
                 <uni-icons type="chat" size="40" color="#ffffff"></uni-icons>
             </view>
             <view class="progress">
-                <view class="time"> 00:00 </view>
+                <view class="time">
+                    {{ formatTime(currentTime) }}
+                </view>
                 <slider
+                    :value="(currentTime / duration) * 100"
                     activeColor="#10AEFF"
                     backgroundColor="#ffffff"
                     block-color="#ffffff"
                     block-size="10" />
-                <view class="time"> 03:00 </view>
+                <view class="time">
+                    {{ formatTime(duration) }}
+                </view>
             </view>
             <view class="play-bar">
                 <image
-                    v-if="audioManager.loop"
+                    v-if="!useStore.isLoop"
                     class="icon"
                     src="../../static/icon/suiji.png"
-                    mode="widthFix"></image>
+                    mode="widthFix"
+                    @click="useStore.playMethod(true)"></image>
                 <uni-icons
                     v-else
                     class="icon"
                     type="loop"
-                    color="#ffffff"></uni-icons>
+                    color="#ffffff"
+                    @click="useStore.playMethod(false)"></uni-icons>
                 <uni-icons
                     class="icon"
                     type="arrow-left"
-                    color="#ffffff"></uni-icons>
+                    color="#ffffff"
+                    @click="changeCurSong(-1)"></uni-icons>
                 <image
                     class="icon nobg"
                     :src="playBtnSrc"
@@ -107,7 +163,8 @@ const playPause = () => {
                 <uni-icons
                     class="icon"
                     type="arrow-right"
-                    color="#ffffff"></uni-icons>
+                    color="#ffffff"
+                    @click="changeCurSong(1)"></uni-icons>
                 <uni-icons class="icon" type="list" color="#ffffff"></uni-icons>
             </view>
         </view>
@@ -152,6 +209,8 @@ const playPause = () => {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.animate {
     transform-origin: center center;
     animation: playing 60s infinite linear;
 }
