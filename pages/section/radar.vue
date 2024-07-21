@@ -25,7 +25,6 @@ const num = computed(()=>{
             :key="item"
             :songList="list?.slice(index * 6 + 1, (index + 1) * 6)"
 			:nameList="nameList[index]"
-			@click="toDetail(id)"
 			:is='index===1?songs:songList'
 			 />
     </view>

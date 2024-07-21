@@ -3,7 +3,7 @@ import { defineProps } from 'vue';
 const props = defineProps(['songList' ,'nameList']);
 import { ref } from 'vue';
 const toDetail =id =>{
-	console.log(id)
+	// console.log(id)
 	uni.navigateTo({
 		url:`/pages/index/banner/rankingPlaylist/rankingPlaylist?id=${id}`,
 	})
