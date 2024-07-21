@@ -2,11 +2,12 @@
 import { defineProps } from 'vue';
 const props = defineProps(['songList' ,'nameList']);
 import { ref } from 'vue';
-const goDetail = id => {
-    uni.navigateTo({
-      url: `/pages/songlist/songlist?id=${id}`
-    })
-  }
+const toDetail =id =>{
+	console.log(id)
+	uni.navigateTo({
+		url:`/pages/index/banner/rankingPlaylist/rankingPlaylist?id=${id}`,
+	})
+}
 </script>
 
 <template>
@@ -17,12 +18,12 @@ const goDetail = id => {
                 <span>{{name}}</span>
             </view>
         </view>
-        <view class="section-content">
+        <view class="section-content" >
             <view
                 class="section-content-playlist"
                 v-for="item in songList"
                 key="item.id">
-                <view class="section-content-playitem">
+                <view class="section-content-playitem" @click="toDetail(item.id)">
                     <img :src="item.picUrl" alt="" />
                 </view>
                 <view class="playlist-item-name">
