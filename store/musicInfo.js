@@ -30,12 +30,19 @@ export const useMusicStore = defineStore('music', () => {
 		}
 		playList.value = copyList.value
 	}
+
+	const getListId = (id) => {
+		listId.value = id
+	}
+
 	return {
 		playList,
 		listId,
 		isLoop,
 		curIndex,
 		getSongs,
-		playMethod
+		playMethod,
+		getListId,
+		getSongs
 	}
 })

@@ -3,6 +3,13 @@ import { ref, watch, computed, nextTick } from 'vue';
 import { singleSong, songCheck } from '../../services';
 import { useMusicStore } from '../../store/musicInfo';
 import { onReady, onLoad } from '@dcloudio/uni-app';
+import comment from '@/pages/index/banner/rankingPlaylist/comment/comment.vue';
+
+const show = ref(false);
+const clickComment = () => {
+    console.log(222222);
+    show.value = true;
+};
 
 const curIndex = ref(0);
 
@@ -121,7 +128,11 @@ const formatTime = num =>
         <view class="control">
             <view class="icons-bar">
                 <uni-icons type="heart" size="40" color="#ffffff"></uni-icons>
-                <uni-icons type="chat" size="40" color="#ffffff"></uni-icons>
+                <uni-icons
+                    type="chat"
+                    size="40"
+                    color="#ffffff"
+                    @click="clickComment"></uni-icons>
             </view>
             <view class="progress">
                 <view class="time">
@@ -169,6 +180,7 @@ const formatTime = num =>
             </view>
         </view>
     </view>
+    <comment v-if="show" @hide="show = false" :songId="songDetail?.al.id" />
 </template>
 
 <style lang="scss" scoped>
