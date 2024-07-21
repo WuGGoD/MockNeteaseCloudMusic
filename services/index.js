@@ -41,9 +41,6 @@ export const qrKey = () => request('get', `/login/qr/key?timestamp=${Date.now()}
 export const qrCreate = key => request('get', `/login/qr/create?timestamp=${Date.now()}&key=${key}&qrimg=qrimg`)
 export const qrCheck = key => request('get', `/login/qr/check?timestamp=${Date.now()}&key=${key}`)
 
-
-export const getSearchHotApi = () => request('get', '/search/hot/detail')
-
 //登录状态
 export const loginStatus = () => request('get', `/login/status`)
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
@@ -51,24 +48,36 @@ export const getUserAccount = () => request('get', `/user/account`)
 export const getUserSubcount = () => request('get', `/user/subcount`)
 export const getUserLevel = () => request('get', `/user/level`)
 
-//每日推荐歌曲
-export const getSongsApi =() =>request('git' ,`/personalized/newsong`)
+
+export const getSongsApi = () => request('get', `/personalized/newsong`)
+
 
 
 
 export const getPlayList = id => request('get', `/user/playlist?uid=${id}`)
 
 //单曲
-export const singleSong = id => request('get', `/song/detail?ids=${typeof id ==="object"?id.join(','):id}`)
+export const singleSong = id => request('get',
+	`/song/url/v1?id=${typeof id ==="object"?id.join(','):id}&level=lossless`)
+
+export const songCheck = id => request('get', `/check/music?id=${id}`)
 
 export const getRankDetailApi = id => request('get', `/playlist/detail?id=${id}`)
 
-export const getBannerApi = () => request('get', '/banner')
 
-export const getBallIconApi = () => request('get', '/homepage/block/page')
+
+// 首页banner部分数据
+export const getAllDataApi = () => request('get', '/homepage/block/page')
 
 export const getRankApi = () => request('get', '/toplist/detail')
 
 
 export const getCommentApi = id => request('get', `/comment/playlist?id=${id}`)
+export const getSingleCommentApi = id => request('get', `/comment/music?id=${id}`)
 
+export const getSearchHotApi = () => request('get', '/search/hot/detail')
+export const getSearchResultApi = keyword => request('get', `/search/suggest?keywords=${keyword}&type=mobile`)
+export const getSearchResultDeatilApi = keyword => request('get', `/search?keywords=${keyword}`)
+
+// 每日推荐
+export const getRecommendApi = () => request('get', '/recommend/songs')
