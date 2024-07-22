@@ -60,8 +60,8 @@ const toDetail =id =>{
         }
     }
     .section-content {
-        overflow-x:auto;
-		overflow-y: hidden;
+        // overflow-x:auto;
+		// overflow-y: hidden;
 		position: relative;
 		white-space: nowrap;
         display: flex;
@@ -89,12 +89,8 @@ const toDetail =id =>{
             .playlist-item-name {
                 font-size: 24rpx;
                 width: 240rpx;
-                height: 70rpx;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
+				height: 70rpx;
+				text-wrap: wrap;
             }
         }
     }
