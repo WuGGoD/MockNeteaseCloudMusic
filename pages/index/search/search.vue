@@ -27,37 +27,32 @@
 			url: '/pages/login/login'
 		})
 	}
-	// goLogin()
-	
+
 	const goUserInfo = () => {
 		uni.switchTab({
 			url: '/pages/mine/mine'
 		})
-		
-		uni.reLaunch({
-			url: '/pages/index/index' // 假设这是首页的路径
-		})
 	}
 
 	// 判断是否显示登录按钮或用户信息
-	const showLoginBtn = computed(() => !localStorage.getItem("account"))
+	const showLoginBtn = computed(() => !user.account)
 
 	const userLogout = async () => {
-		
+		// 刷新当前页面
 		const res = await logout()
+		console.log(res);
 		uni.showToast({
 			title: "退出成功"
 		})
-		// 刷新当前页面
-		uni.reLaunch({
-			url: '/pages/index/index' // 假设这是首页的路径
-		});
-		localStorage.removeItem('account')
-		localStorage.removeItem('verify')
+		localStorage.clear()
 		const timeout = setTimeout(() => {
 			uni.hideToast()
 			clearTimeout(timeout)
 		}, 1000)
+		window.location.reload()
+		uni.reLaunch({
+			url: '/pages/index/index' // 假设这是首页的路径
+		})
 	}
 </script>
 
