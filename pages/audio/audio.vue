@@ -34,7 +34,6 @@ useStore.getSongs().then(() => {
                 title: songDetail.value?.name,
             });
             const isWork = await songCheck(songDetail.value?.al.id);
-            console.log(88888888, isWork);
             if (!isWork.success) {
                 isPlay.value = false;
                 duration.value = 0;
