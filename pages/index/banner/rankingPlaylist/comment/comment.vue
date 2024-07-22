@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps, defineEmits } from 'vue';
+import { ref } from 'vue';
 import { getCommentApi, getSingleCommentApi } from '../../../../../services';
 const props = defineProps(['id', 'songId']);
 const emits = defineEmits(['hide']);

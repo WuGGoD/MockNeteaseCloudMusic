@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
 import { useMusicStore } from '../../../../../store/musicInfo';
 
 const props = defineProps(['list', 'listId']);
