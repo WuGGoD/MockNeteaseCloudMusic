@@ -13,8 +13,8 @@ import {
 } from '../services';
 
 export const useUserStore = defineStore('user', () => {
-	const verify = uni.getStorageSync('verify') ? ref(uni.getStorageSync('verify')) : ref(null)
-	const account = uni.getStorageSync('account') ? ref(uni.getStorageSync('account')) : ref(null)
+	const verify = ref(uni.getStorageSync('verify'))
+	const account = ref(uni.getStorageSync('account'))
 
 	const getAccount = async () => {
 		const res = await loginStatus()
