@@ -22,31 +22,42 @@
 		})
 	}
 
-	// const userInfo = ref(null)
 	const goLogin = async () => {
 		uni.navigateTo({
 			url: '/pages/login/login'
 		})
 	}
-	goLogin()
+	// goLogin()
+	
 	const goUserInfo = () => {
 		uni.switchTab({
 			url: '/pages/mine/mine'
 		})
+		
+		uni.reLaunch({
+			url: '/pages/index/index' // 假设这是首页的路径
+		})
 	}
 
 	// 判断是否显示登录按钮或用户信息
-	const showLoginBtn = computed(() => !user.account)
-	
-	const userLogout = async ()=>{
+	const showLoginBtn = computed(() => !localStorage.getItem("account"))
+
+	const userLogout = async () => {
+		
 		const res = await logout()
 		uni.showToast({
-			title:"退出成功"
+			title: "退出成功"
 		})
-		const timeout = setTimeout(()=>{
+		// 刷新当前页面
+		uni.reLaunch({
+			url: '/pages/index/index' // 假设这是首页的路径
+		});
+		localStorage.removeItem('account')
+		localStorage.removeItem('verify')
+		const timeout = setTimeout(() => {
 			uni.hideToast()
 			clearTimeout(timeout)
-		},1000)
+		}, 1000)
 	}
 </script>
 
@@ -67,8 +78,8 @@
 					<view class="profilePhoto" @click="goUserInfo">
 						<image :src="user.verify?.avatarUrl" mode="widthFix"></image>
 					</view>
-					<view class="name">{{ user.verify?.nickName }}</view>
-					<button type="primary" size="mini" class="exitLoginBtn">退出登录</button>
+					<view class="name">{{ user.verify?.nickname }}</view>
+					<button type="primary" size="mini" class="userLogout" @click="userLogout">退出登录</button>
 				</view>
 			</view>
 		</uni-popup>
@@ -109,7 +120,7 @@
 	}
 
 	.loginBtn,
-	.exitLoginBtn {
+	.userLogout {
 		background-color: #c84341 !important;
 	}
 
@@ -142,6 +153,7 @@
 		border-radius: 50%;
 		background-color: #dddddd;
 		overflow: hidden;
+		flex-shrink: 0;
 
 		image {
 			width: 100%;
@@ -150,9 +162,9 @@
 	}
 
 	.name {
-		font-size: 32rpx;
-		line-height: 150rpx;
-		margin-left: 40rpx;
-		margin-right: 100rpx;
+		font-size: 28rpx;
+		line-height: 40rpx;
+		margin-left: 10rpx;
+		margin-right: 10rpx;
 	}
 </style>
