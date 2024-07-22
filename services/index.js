@@ -1,4 +1,4 @@
-const base = 'https://zyxcl.xyz/music/api'
+const base = 'https://zyxcl.xyz/music/api' //https://music.163.com
 
 export const request = (method, url,
 	options = {}) => {
@@ -85,8 +85,7 @@ export const getSearchResultDeatilApi = keyword => request('get', `/search?keywo
 
 export const getUserDetail = id => request('get', `/user/detail?uid=${id}`)
 
-export const logout = ()=>request('get','/logout')
+export const logout = () => request('get', '/logout')
 
 // 每日推荐
 export const getRecommendApi = () => request('get', '/recommend/songs')
-

@@ -30,10 +30,11 @@ useStore.getSongs().then(() => {
     watch(
         () => songDetail.value,
         async () => {
+            audioManager.src = '';
             uni.setNavigationBarTitle({
                 title: songDetail.value?.name,
             });
-            const isWork = await songCheck(songDetail.value?.al.id);
+            const isWork = await songCheck(songDetail.value?.id);
             if (!isWork.success) {
                 isPlay.value = false;
                 duration.value = 0;
@@ -50,7 +51,7 @@ useStore.getSongs().then(() => {
                 }, 1000);
                 return;
             }
-            const res = await singleSong(songDetail.value?.al.id);
+            const res = await singleSong(songDetail.value?.id);
             console.log(9999999, res, res.data[0].url);
             audioManager.src = res.data[0].url;
             audioManager.onCanplay(() => {
@@ -60,6 +61,9 @@ useStore.getSongs().then(() => {
             });
             audioManager.onTimeUpdate(() => {
                 currentTime.value = audioManager.currentTime;
+            });
+            audioManager.onEnded(() => {
+                curIndex.value++;
             });
         },
         {
@@ -106,6 +110,11 @@ const changeCurSong = num => {
 const zero = num => (num >= 10 ? num : '0' + num);
 const formatTime = num =>
     `${zero(Math.floor(num / 60))}:${zero(parseInt(num % 60))}`;
+
+// audioManager.seek
+const sliderChange = e => {
+    audioManager.seek((e.detail.value / 100) * duration.value);
+};
 </script>
 
 <template>
@@ -142,7 +151,8 @@ const formatTime = num =>
                     activeColor="#10AEFF"
                     backgroundColor="#ffffff"
                     block-color="#ffffff"
-                    block-size="10" />
+                    block-size="10"
+                    @change="sliderChange" />
                 <view class="time">
                     {{ formatTime(duration) }}
                 </view>
@@ -179,7 +189,7 @@ const formatTime = num =>
             </view>
         </view>
     </view>
-    <comment v-if="show" @hide="show = false" :songId="songDetail?.al.id" />
+    <comment v-if="show" @hide="show = false" :songId="songDetail?.id" />
 </template>
 
 <style lang="scss" scoped>

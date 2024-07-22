@@ -17,6 +17,7 @@ export const useMusicStore = defineStore('music', () => {
 
 	const getSongs = async () => {
 		const res = await getRankDetailApi(listId.value)
+		console.log(res);
 		playList.value = res.playlist.tracks
 		copyList.value = [...res.playlist.tracks]
 	}

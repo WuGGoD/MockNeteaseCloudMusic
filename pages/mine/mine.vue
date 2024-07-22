@@ -26,6 +26,12 @@ watch(
         immediate: true,
     }
 );
+
+const goPlayList = id => {
+    uni.navigateTo({
+        url: `/pages/index/banner/rankingPlaylist/rankingPlaylist?id=${id}`,
+    });
+};
 </script>
 
 <template>
@@ -75,7 +81,8 @@ watch(
                 :note="`${item.trackCount}首·${item.playCount}次播放`"
                 :thumb="item.coverImgUrl"
                 thumb-size="lg"
-                clickable="">
+                clickable="true"
+                @click="goPlayList(item.id)">
             </uni-list-item>
         </uni-list>
     </view>
