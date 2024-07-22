@@ -70,7 +70,9 @@ export const getRankDetailApi = id => request('get', `/playlist/detail?id=${id}`
 
 
 // 首页banner部分数据
-export const getAllDataApi = () => request('get', '/homepage/block/page')
+// export const getAllDataApi = () => request('get', '/homepage/block/page')
+export const getBannerApi = () => request('get', '/banner')
+export const getIconApi = () => request('get', '/homepage/dragon/ball')
 
 export const getRankApi = () => request('get', '/toplist/detail')
 

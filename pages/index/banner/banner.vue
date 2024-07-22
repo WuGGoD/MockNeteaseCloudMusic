@@ -1,6 +1,6 @@
 <script setup>
 	import { nextTick, ref } from 'vue'
-	import { getAllDataApi } from '../../../services'
+	import { getBannerApi, getIconApi } from '../../../services'
 	import { useUserStore } from '../../../store/userInfo'
 	
 	const userStore = useUserStore()
@@ -49,22 +49,38 @@
 		}
 	}
 
-const getAllDataIcon = async () => {
-	const res = await getAllDataApi()
-	localStorage.setItem('data', JSON.stringify(res.data.blocks))
-	if (!localStorage.getItem('data')) {
-		navList.value = res.data.blocks[1].creatives[0].resources
-		banner.value = res.data.blocks[0].extInfo.banners
+// const getAllDataIcon = async () => {
+// 	const res = await getAllDataApi()
+// 	localStorage.setItem('data', JSON.stringify(res.data.blocks))
+// 	if (!localStorage.getItem('data')) {
+// 		navList.value = res.data.blocks[1].creatives[0].resources
+// 		banner.value = res.data.blocks[0].extInfo.banners
+// 	} else {
+// 		navList.value = JSON.parse(localStorage.getItem('data'))[1].creatives[0].resources
+// 		banner.value = JSON.parse(localStorage.getItem('data'))[0].extInfo.banners
+// 	}
+// 	// console.log(res.data.blocks)
+// }
+
+const getBanner = async () => {
+	const res = await getBannerApi()
+	const res1 = await getIconApi()
+	localStorage.setItem('banner', JSON.stringify(res.banners))
+	localStorage.setItem('icon', JSON.stringify(res1.data))
+	console.log(res.banners, res1.data)
+	if (!localStorage.getItem('banner') || !localStorage.getItem('icon')) {
+		navList.value = res1.data
+		banner.value = res.banners
 	} else {
-		navList.value = JSON.parse(localStorage.getItem('data'))[1].creatives[0].resources
-		banner.value = JSON.parse(localStorage.getItem('data'))[0].extInfo.banners
+		navList.value = JSON.parse(localStorage.getItem('icon'))
+		banner.value = JSON.parse(localStorage.getItem('banner'))
 	}
 	// console.log(res.data.blocks)
 }
 // console.log(JSON.parse(localStorage.getItem('data'))[0].extInfo.banners)
 
 
-getAllDataIcon()
+getBanner()
 
 </script>
 
@@ -76,7 +92,7 @@ getAllDataIcon()
 					:duration="duration">
 					<swiper-item v-for="item in banner" :key="item.targetId">
 						<view class="swiper-item uni-bg-red">
-							<image :src="item.pic" mode="widthFix"></image>
+							<image :src="item.imageUrl" mode="widthFix"></image>
 						</view>
 					</swiper-item>
 				</swiper>
@@ -84,11 +100,11 @@ getAllDataIcon()
 		</view>
 		
 		<view class="nav">
-			<view class="nav-item" v-for="item in navList" :key="item.uiElement.mainTitle.title" @click="toRank(item.uiElement.mainTitle.title)">
+			<view class="nav-item" v-for="item in navList" :key="item.name" @click="toRank(item.name)">
 				<view class="img">
-					<image :src="item.uiElement.image.imageUrl" mode="widthFix"></image>
+					<image :src="item.iconUrl" mode="widthFix"></image>
 				</view>
-				<text>{{item.uiElement.mainTitle.title}}</text>
+				<text>{{item.name}}</text>
 			</view>
 		</view>
 	</view>
