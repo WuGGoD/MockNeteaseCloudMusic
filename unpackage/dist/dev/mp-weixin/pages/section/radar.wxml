@@ -1,0 +1,1 @@
+<view class="list"><song-list wx:for="{{a}}" wx:for-item="item" wx:key="a" u-i="{{item.b}}" bind:__l="__l" u-p="{{item.c}}"/></view>

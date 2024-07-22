@@ -1,0 +1,126 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.bg.data-v-57f07fec {
+  width: 100vw;
+  height: calc(100vh - 88rpx);
+  position: relative;
+}
+.blur.data-v-57f07fec {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center center;
+  filter: blur(20rpx);
+  z-index: -9;
+}
+.rotate.data-v-57f07fec {
+  width: 100%;
+  height: 800rpx;
+  overflow: hidden;
+}
+@keyframes playing-57f07fec {
+from {
+    transform: rotate(0);
+}
+to {
+    transform: rotate(360deg);
+}
+}
+.discs.data-v-57f07fec {
+  width: 100%;
+  height: 100%;
+  padding: 0 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.animate.data-v-57f07fec {
+  transform-origin: center center;
+  animation: playing-57f07fec 60s infinite linear;
+}
+.img.data-v-57f07fec {
+  width: 650rpx;
+  height: 650rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 80rpx solid rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  overflow: hidden;
+}
+.bar.data-v-57f07fec {
+  margin-top: 200rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.bar input.data-v-57f07fec {
+  width: 500rpx;
+  padding: 0;
+}
+.control.data-v-57f07fec {
+  height: 300rpx;
+}
+.icons-bar.data-v-57f07fec {
+  display: flex;
+  justify-content: center;
+}
+.icons-bar .uni-icons.data-v-57f07fec {
+  margin: 0 40rpx;
+}
+.progress.data-v-57f07fec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx;
+  color: #ffffff;
+}
+.progress .time.data-v-57f07fec {
+  width: 80rpx;
+  text-align: center;
+}
+.progress slider.data-v-57f07fec {
+  flex: 1;
+}
+.play-bar.data-v-57f07fec {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 20rpx;
+}
+.play-bar .icon.data-v-57f07fec {
+  width: 80rpx;
+  height: 80rpx;
+  font-size: 80rpx !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-bar .icon.data-v-57f07fec text {
+  font-size: 80rpx !important;
+}

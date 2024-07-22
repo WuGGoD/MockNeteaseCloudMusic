@@ -1,4 +1,11 @@
-@mixin common($h , $bg: #FFFFFF, $flex: block, $jc: flex-start, $ai: flex-start, $w: 37.5rem) {
+@mixin common(
+    $h,
+    $bg: #ffffff,
+    $flex: block,
+    $jc: flex-start,
+    $ai: flex-start,
+    $w: 37.5rem
+) {
     height: $h;
     background-color: $bg;
     display: $flex;
