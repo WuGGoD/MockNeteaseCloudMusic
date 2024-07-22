@@ -51,7 +51,7 @@
 		}, 1000)
 		window.location.reload()
 		uni.reLaunch({
-			url: '/pages/index/index' // 假设这是首页的路径
+			url: '/pages/index/index'
 		})
 	}
 </script>
